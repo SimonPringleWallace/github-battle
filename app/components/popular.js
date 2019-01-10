@@ -81,7 +81,7 @@ updatedLanguage(lang){
           selectedLanguage = {this.state.selectedLanguage}
           onSelect = {this.updatedLanguage}
         />
-        {!this.state.repos ? <Loading text='downloading' speed='10' /> :
+        {!this.state.repos ? <Loading text='downloading' speed={200} /> :
         <RepoGrid repos={this.state.repos} />}
       </div>
     )
