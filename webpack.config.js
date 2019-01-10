@@ -9,7 +9,9 @@ module.exports = {
     // a folder called 'dist'
     path: path.resolve(__dirname, 'dist'),
     //the end product of this bundling will be named in 'filename'
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    // set the base path for all assets
+    publicPath:'/'
   },
   module: {
     rules:[
@@ -20,6 +22,10 @@ module.exports = {
       // style-loader then inserts these directly into the html so the styles are active
       {test:/\.css$/, use:['style-loader', 'css-loader']}
     ]
+  },
+  // defaults back to the base url and then react router is able to route to the appropriate component
+  devServer:{
+    historyApiFallback: true
   },
   // which path either development or production
   mode: 'development',
