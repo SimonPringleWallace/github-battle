@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-var api = require('../utils/api')
+import {fetchPopularRepos} from '../utils/api'
+import Loading from './Loading'
+
 
 const SelectLanguage = ({selectedLanguage, onSelect}) => {
     const languages = ['All', 'JavaScript','Ruby','Java', 'CSS', 'Python'];
@@ -68,7 +70,7 @@ class Popular extends React.Component {
 
 updatedLanguage(lang){
   this.setState({selectedLanguage: lang})
-  api.fetchPopularRepos(lang)
+  fetchPopularRepos(lang)
   .then(repos => this.setState({repos:repos}))
 }
 
@@ -79,7 +81,7 @@ updatedLanguage(lang){
           selectedLanguage = {this.state.selectedLanguage}
           onSelect = {this.updatedLanguage}
         />
-        {!this.state.repos ? <p> LOADING </p> :
+        {!this.state.repos ? <Loading text='downloading' speed='10' /> :
         <RepoGrid repos={this.state.repos} />}
       </div>
     )
